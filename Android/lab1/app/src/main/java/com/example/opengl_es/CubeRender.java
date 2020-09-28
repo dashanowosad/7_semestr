@@ -51,7 +51,7 @@ public class CubeRender implements GLSurfaceView.Renderer {
 
     };
 
-    private float a[]= {
+    /*private float a[]= {
             1.0f, 1.0f,-1.0f,
             -1.0f, 1.0f,-1.0f,
             -1.0f, 1.0f, 1.0f,
@@ -81,17 +81,128 @@ public class CubeRender implements GLSurfaceView.Renderer {
             1.0f, 1.0f, 1.0f,
             1.0f,-1.0f, 1.0f,
             1.0f,-1.0f,-1.0f
+    };*/
+
+    float []a = new float[]{
+            -1,0.5f,1,
+            -1,-0.5f,1,
+            1,-0.5f,1,
+            1,0.5f,1
     };
-    FloatBuffer f, col;
+
+    float []a1 = new float[]{
+            -1,0.5f,-1,
+            -1,-0.5f,-1,
+            1,-0.5f,-1,
+            1,0.5f,-1
+    };
+
+    float []a2 = new float[]{
+            1, 0.5f, -1,
+            -1, 0.5f, -1,
+            -1, 0.5f, 1,
+            1, 0.5f, 1
+    };
+    float []a3 = new float[]{
+            1, -0.5f, -1,
+            -1, -0.5f, -1,
+            -1, -0.5f, 1,
+            1, -0.5f, 1
+    };
+
+    float []a4 = new float[]{
+            -1, 0.5f, -1,
+            -1, 0.5f, 1,
+            -1, -0.5f, 1,
+            -1, -0.5f, -1
+    };
+
+    float []a5 = new float[]{
+            1, 0.5f, -1,
+            1, 0.5f, 1,
+            1, -0.5f, 1,
+            1, -0.5f, -1
+    };
+
+    float []a6 = new float[]{
+            -1,0.5f,1,
+            -1,-0.5f,1,
+            1,-0.5f,1,
+            1,0.5f,1,
+
+            -1,0.5f,-1,
+            -1,-0.5f,-1,
+            1,-0.5f,-1,
+            1,0.5f,-1,
+
+            1, 0.5f, -1,
+            -1, 0.5f, -1,
+            -1, 0.5f, 1,
+            1, 0.5f, 1,
+
+            1, -0.5f, -1,
+            -1, -0.5f, -1,
+            -1, -0.5f, 1,
+            1, -0.5f, 1,
+
+            -1, 0.5f, -1,
+            -1, 0.5f, 1,
+            -1, -0.5f, 1,
+            -1, -0.5f, -1,
+
+            1, 0.5f, -1,
+            1, 0.5f, 1,
+            1, -0.5f, 1,
+            1, -0.5f, -1
+
+
+    };
+    FloatBuffer f1, f2, f3, f4, f5, f6, f7, col;
     ByteBuffer b;
 
     @Override
     public void onSurfaceCreated(GL10 gl10, EGLConfig eglConfig) {
+        /*b = ByteBuffer.allocateDirect(a.length *4);
+        b.order(ByteOrder.nativeOrder());
+        f1 = b.asFloatBuffer();
+        f1.put(a);
+        f1.position(0);
+
         b = ByteBuffer.allocateDirect(a.length *4);
         b.order(ByteOrder.nativeOrder());
-        f = b.asFloatBuffer();
-        f.put(a);
-        f.position(0);
+        f2 = b.asFloatBuffer();
+        f2.put(a1);
+        f2.position(0);
+
+        b = ByteBuffer.allocateDirect(a.length *4);
+        b.order(ByteOrder.nativeOrder());
+        f3 = b.asFloatBuffer();
+        f3.put(a2);
+        f3.position(0);
+
+        b = ByteBuffer.allocateDirect(a.length *4);
+        b.order(ByteOrder.nativeOrder());
+        f4 = b.asFloatBuffer();
+        f4.put(a3);
+        f4.position(0);
+
+        b = ByteBuffer.allocateDirect(a.length *4);
+        b.order(ByteOrder.nativeOrder());
+        f5 = b.asFloatBuffer();
+        f5.put(a4);
+        f5.position(0);
+
+        b = ByteBuffer.allocateDirect(a.length *4);
+        b.order(ByteOrder.nativeOrder());
+        f6 = b.asFloatBuffer();
+        f6.put(a5);
+        f6.position(0);
+*/
+        b = ByteBuffer.allocateDirect(a6.length *4);
+        b.order(ByteOrder.nativeOrder());
+        f7 = b.asFloatBuffer();
+        f7.put(a6);
+        f7.position(0);
 
         b = ByteBuffer.allocateDirect(colors.length *4);
         b.order(ByteOrder.nativeOrder());
@@ -116,13 +227,61 @@ public class CubeRender implements GLSurfaceView.Renderer {
         gl.glEnable(GL10.GL_DEPTH_TEST);
         gl.glDepthFunc(GL10.GL_LESS);
 
+        /*gl.glLoadIdentity();
+        gl.glRotatef(-45, 1,1,1);
+        gl.glScalef(0.5f,0.5f,0.25f);
+        gl.glColor4f(1,0,1,1);
+
+        gl.glEnableClientState(GL10.GL_VERTEX_ARRAY);
+        gl.glVertexPointer(3,GL10.GL_FLOAT,0,f1);
+        //gl.glEnableClientState(GL10.GL_COLOR_ARRAY);
+        //gl.glColorPointer(4,GL10.GL_FLOAT,0,col);
+        gl.glDrawArrays(GL10.GL_TRIANGLE_FAN,0,4);
+        gl.glDisableClientState(GL10.GL_VERTEX_ARRAY);
+        //gl.glDisableClientState(GL10.GL_COLOR_ARRAY);
+
+        gl.glColor4f(1,0,0,1);
+
+        gl.glEnableClientState(GL10.GL_VERTEX_ARRAY);
+        gl.glVertexPointer(3,GL10.GL_FLOAT,0,f2);
+        gl.glDrawArrays(GL10.GL_TRIANGLE_FAN,0,4);
+        gl.glDisableClientState(GL10.GL_VERTEX_ARRAY);
+
+        gl.glColor4f(1,1,0,1);
+
+        gl.glEnableClientState(GL10.GL_VERTEX_ARRAY);
+        gl.glVertexPointer(3,GL10.GL_FLOAT,0,f3);
+        gl.glDrawArrays(GL10.GL_TRIANGLE_FAN,0,4);
+        gl.glDisableClientState(GL10.GL_VERTEX_ARRAY);
+
+        gl.glColor4f(0,1,0,1);
+
+        gl.glEnableClientState(GL10.GL_VERTEX_ARRAY);
+        gl.glVertexPointer(3,GL10.GL_FLOAT,0,f4);
+        gl.glDrawArrays(GL10.GL_TRIANGLE_FAN,0,4);
+        gl.glDisableClientState(GL10.GL_VERTEX_ARRAY);
+
+        gl.glColor4f(0,1,1,1);
+
+        gl.glEnableClientState(GL10.GL_VERTEX_ARRAY);
+        gl.glVertexPointer(3,GL10.GL_FLOAT,0,f5);
+        gl.glDrawArrays(GL10.GL_TRIANGLE_FAN,0,4);
+        gl.glDisableClientState(GL10.GL_VERTEX_ARRAY);
+
+        gl.glColor4f(0,0,1,1);
+
+        gl.glEnableClientState(GL10.GL_VERTEX_ARRAY);
+        gl.glVertexPointer(3,GL10.GL_FLOAT,0,f6);
+        gl.glDrawArrays(GL10.GL_TRIANGLE_FAN,0,4);
+        gl.glDisableClientState(GL10.GL_VERTEX_ARRAY);*/
+
         gl.glLoadIdentity();
         gl.glRotatef(-45, 1,1,1);
-        gl.glScalef(0.6f,0.5f,0.25f);
+        gl.glScalef(0.5f,0.5f,0.25f);
         //gl.glColor4f(1,0,1,1);
 
         gl.glEnableClientState(GL10.GL_VERTEX_ARRAY);
-        gl.glVertexPointer(3,GL10.GL_FLOAT,0,f);
+        gl.glVertexPointer(3,GL10.GL_FLOAT,0,f7);
         gl.glEnableClientState(GL10.GL_COLOR_ARRAY);
         gl.glColorPointer(4,GL10.GL_FLOAT,0,col);
         gl.glDrawArrays(GL10.GL_TRIANGLE_FAN,0,24);

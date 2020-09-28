@@ -44,6 +44,7 @@ public class SquareRenderer implements GLSurfaceView.Renderer {
         gl.glVertexPointer(3,GL10.GL_FLOAT,0,f);
         gl.glDrawArrays(GL10.GL_TRIANGLE_FAN,0,4);
         gl.glDisableClientState(GL10.GL_VERTEX_ARRAY);
+
     }
 }
 

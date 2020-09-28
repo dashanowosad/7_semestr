@@ -79,6 +79,13 @@ public class MainActivity extends AppCompatActivity {
 
         setContentView(this.relativeLayout);
 
+        ButSph.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(MainActivity.this, SphereActivity.class);
+                startActivity(intent);
+            }
+        });
 
 
     }
